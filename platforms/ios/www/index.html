@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Api Jquery Prueba para Todo
+		</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	</head>
+	<body>
+
+	<div class="container">
+			<div class="col-md-3">algo</div>
+			<div id="main" class="col-md-6">
+
+						
+
+			</div>
+			<div class="">algo</div>
+
+	</div>
+	
+		
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		
+		printItems = function(data) {
+   		for (i = 0; i < data.length; i++) { 
+				var $title = '<h1 id="title">' + data[i].title + '</h1>';
+				var $description = '<p>' + data[i].description + '</p>';
+	    		var $itemHtml = ["<section id='one' class='row'>","<div id='inner' class='inner'>","<header class='major'>",$title,"</header>","<span id='image'class='image main'>",$description,"</span></div></section>"].join("");
+				$('#main').append($itemHtml);
+			}
+		};
+
+		getThings = function(){
+			$.ajax({
+			   url: 'https://todo-api-example.herokuapp.com/things',
+			   data: {
+			      format: 'json'
+			   },
+			   error: function() {
+			      $('#info').html('<p>An error has occurred</p>');
+			   },
+			   dataType: 'jsonp',
+			   success: function(data) {
+			   		printItems(data);
+			   },
+			   type: 'GET'
+			});
+		}
+
+		getThings();
+
+		
+
+	</script>
+
+	</body>
+</html>
